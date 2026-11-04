@@ -1,0 +1,29 @@
+[package]
+name = "devecho-network-scanner"
+version = "1.4.0"
+edition = "2021"
+description = "DevEcho Network Scanner"
+
+[dependencies]
+eframe = { version = "=0.27.2", default-features = false, features = ["default_fonts", "glow", "x11"] }
+egui_extras = "=0.27.2"
+dns-lookup = "2"
+png = "0.17"
+argon2 = "0.5"
+aes-gcm = "0.10"
+zeroize = "1"
+
+[build-dependencies]
+winresource = "0.1"
+png = "0.17"
+
+[features]
+# Lets the Windows API code be type-checked on non-Windows machines (cargo check --features wincheck)
+wincheck = []
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
